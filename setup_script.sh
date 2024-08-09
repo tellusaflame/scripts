@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# bash <(wget -qO- https://raw.githubusercontent.com/tellusaflame/scripts/main/setup_script.sh?token=GHSAT0AAAAAACRKUAKC3FXHRNIO46346EBYZVWNZKA)
+
 # Обновление компонентов системы
 echo "Updating system components..."
 sudo apt update && sudo apt upgrade -y
@@ -53,4 +55,6 @@ docker compose up -d
 echo "Restarting SSH service..."
 sudo systemctl restart ssh
 
-echo "Setup completed successfully!"
+echo "Setup completed successfully! Rebooting..."
+
+sudo reboot now
