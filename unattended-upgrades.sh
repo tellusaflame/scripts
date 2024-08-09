@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# wget -O unattended-upgrades.sh 
+# wget -O unattended-upgrades.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/unattended-upgrades.sh?token=GHSAT0AAAAAACRKUAKCQWDMVGP4RDYZOHNGZVWPR2A
 # chmod +x unattended-upgrades.sh
 
 # Проверка на запуск от имени суперпользователя
