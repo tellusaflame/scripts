@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # bash <(wget -qO- https://raw.githubusercontent.com/tellusaflame/scripts/main/setup_script.sh?token=GHSAT0AAAAAACRKUAKC3FXHRNIO46346EBYZVWNZKA)
+# wget -O setup_script.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/setup_script.sh?token=GHSAT0AAAAAACRKUAKC3FXHRNIO46346EBYZVWNZKA
+# chmod +x setup_script.sh
 
 # Обновление компонентов системы
 echo "Updating system components..."
