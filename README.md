@@ -17,7 +17,7 @@ chmod +x unattended-upgrades.sh
 
 wget -O 3x_ui_port_routing.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/3x_ui_port_routing.sh
 chmod +x 3x_ui_port_routing.sh
-./3x_ui_port_routing.sh
+./3x_ui_port_routing.sh eth0 192.168.1.100
 
 
 update_3x-ui.sh
