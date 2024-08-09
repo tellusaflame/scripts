@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# wget -O 3x_ui_port_routing.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/3x_ui_port_routing.sh?token=GHSAT0AAAAAACRKUAKCNAKZPZ5LEBQVHDCKZVWOHOA
+# wget -O 3x_ui_port_routing.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/3x_ui_port_routing.sh
 # chmod +x 3x_ui_port_routing.sh
 
 # Создание файла /usr/local/bin/setup-iptables.sh
