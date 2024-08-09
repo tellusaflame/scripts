@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# wget -O 3x_ui_port_routing.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/3x_ui_port_routing.sh?token=GHSAT0AAAAAACRKUAKCNAKZPZ5LEBQVHDCKZVWOHOA
+# chmod +x 3x_ui_port_routing.sh
+
 # Создание файла /usr/local/bin/setup-iptables.sh
 echo "Creating iptables setup script..."
 sudo bash -c 'cat << EOF > /usr/local/bin/setup-iptables.sh
