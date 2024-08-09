@@ -27,17 +27,17 @@ else
 fi
 
 # Редактирование файла 50unattended-upgrades
-echo "Редактирование конфигурации unattended-upgrades..."
-cat <<EOT >> /etc/apt/apt.conf.d/50unattended-upgrades
+# echo "Редактирование конфигурации unattended-upgrades..."
+# cat <<EOT >> /etc/apt/apt.conf.d/50unattended-upgrades
 
-// Разрешенные источники обновлений
-Unattended-Upgrade::Allowed-Origins {
-    "\${distro_id}:\${distro_codename}-security";
-    // Добавьте другие источники, если это необходимо
-    // "\${distro_id}:\${distro_codename}-updates";
-    // "\${distro_id}:\${distro_codename}-proposed";
-};
-EOT
+# // Разрешенные источники обновлений
+# Unattended-Upgrade::Allowed-Origins {
+#     "\${distro_id}:\${distro_codename}-security";
+#     // Добавьте другие источники, если это необходимо
+#     // "\${distro_id}:\${distro_codename}-updates";
+#     // "\${distro_id}:\${distro_codename}-proposed";
+# };
+# EOT
 
 # Перезапуск службы unattended-upgrades
 echo "Перезапуск службы unattended-upgrades..."
