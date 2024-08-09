@@ -51,6 +51,6 @@ docker compose up -d
 
 # Перезапуск службы SSH для применения изменений
 echo "Restarting SSH service..."
-sudo systemctl restart sshd
+sudo systemctl restart ssh
 
 echo "Setup completed successfully!"
