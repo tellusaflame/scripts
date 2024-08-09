@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# wget -O update_3x-ui.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/update_3x-ui.sh?token=GHSAT0AAAAAACRKUAKCI42R33MFXQECNSCOZVWOSKQ
+# wget -O update_3x-ui.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/update_3x-ui.sh
 # chmod +x update_3x-ui.sh
 
 cd ~/3x-ui
