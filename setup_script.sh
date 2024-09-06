@@ -47,7 +47,7 @@ echo "Installing 3X-UI panel..."
 cd ~
 git clone https://github.com/MHSanaei/3x-ui.git
 cd 3x-ui
-git checkout v2.3.12
+git checkout v2.3.15
 
 # Запуск 3X-UI с помощью Docker Compose
 echo "Starting 3X-UI with Docker Compose..."
