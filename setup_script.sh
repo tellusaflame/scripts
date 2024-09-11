@@ -57,6 +57,13 @@ docker compose up -d
 echo "Restarting SSH service..."
 sudo systemctl restart ssh
 
+# Копирование скрипта для обновления 3X-UI, а также настройки UDP/TCP маскировки для VLESS
+cd ~
+wget -O update_3x-ui.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/update_3x-ui.sh
+wget -O 3x_ui_port_routing.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/3x_ui_port_routing.sh
+chmod +x update_3x-ui.sh
+chmod +x 3x_ui_port_routing.sh
+
 echo "Setup completed successfully! Rebooting..."
 
 sudo reboot now
