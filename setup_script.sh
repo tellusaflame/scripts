@@ -32,6 +32,41 @@ PermitRootLogin yes
 UsePAM yes
 " > /etc/ssh/sshd_config.d/tellus.conf'
 
+# Установка fail2ban
+echo "Установка fail2ban..."
+apt-get update
+apt-get install -y fail2ban
+
+# Путь к конфигурационному файлу jail.local
+JAIL_LOCAL="/etc/fail2ban/jail.local"
+
+# Проверка, существует ли jail.local, если нет - создаем его
+if [ ! -f "$JAIL_LOCAL" ]; then
+    echo "Создание файла $JAIL_LOCAL"
+    touch "$JAIL_LOCAL"
+fi
+
+# Добавление конфигурации для sshd
+cat <<EOL > "$JAIL_LOCAL"
+[sshd]
+enabled = true
+port = 55555
+filter = sshd
+logpath = /var/log/auth.log  ; Путь к логам зависит от вашей системы
+maxretry = 5
+bantime = 86400
+findtime = 3600
+EOL
+
+# Перезапуск fail2ban
+echo "Перезапуск fail2ban..."
+systemctl restart fail2ban
+
+# Проверка статуса fail2ban
+echo "Статус fail2ban для sshd:"
+fail2ban-client status sshd
+
+
 # Установка и настройка UFW
 echo "Installing and configuring UFW..."
 sudo apt -y install ufw
