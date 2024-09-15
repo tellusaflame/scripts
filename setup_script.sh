@@ -6,7 +6,7 @@
 
 # Функция для выполнения команды с очисткой экрана и паузой
 run_command() {
-    eval "$1 > /dev/null 2>&1"  # Выполняем команду и скрываем вывод
+    eval "$1 &> ~/setup_script.log"  # Выполняем команду и скрываем вывод
     # echo "Нажмите любую клавишу для продолжения..."
     # read -n 1 -s  # Ожидаем нажатия клавиши
     # sleep 1  # Пауза на 1 секунду
@@ -44,8 +44,7 @@ JAIL_LOCAL="/etc/fail2ban/jail.local"
 
 # Проверка, существует ли jail.local, если нет - создаем его
 if [ ! -f "$JAIL_LOCAL" ]; then
-    echo "Создание файла $JAIL_LOCAL"
-    touch "$JAIL_LOCAL"
+    run_command "touch '$JAIL_LOCAL'"
 fi
 
 # Добавление конфигурации для sshd
@@ -85,7 +84,7 @@ run_command "wget -O 3x_ui_port_routing.sh https://raw.githubusercontent.com/tel
 run_command "chmod +x update_3x-ui.sh"
 run_command "chmod +x 3x_ui_port_routing.sh"
 
-run_command "sudo ufw enable"
+sudo ufw enable
 
 echo "Setup completed successfully! Rebooting..."
 run_command "sleep 5"
