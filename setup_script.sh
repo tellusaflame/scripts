@@ -84,9 +84,9 @@ run_command "wget -O 3x_ui_port_routing.sh https://raw.githubusercontent.com/tel
 run_command "chmod +x update_3x-ui.sh"
 run_command "chmod +x 3x_ui_port_routing.sh"
 
+echo "Confirm ufw enabling please...\n\n"
 sudo ufw enable
 
 echo "Setup completed successfully! Rebooting..."
-run_command "sleep 5"
 
 run_command "sudo reboot now"
