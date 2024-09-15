@@ -4,38 +4,40 @@
 # wget -O setup_script.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/setup_script.sh
 # chmod +x setup_script.sh
 
+# Функция для выполнения команды с очисткой экрана и паузой
+run_command() {
+    eval "$1 > /dev/null 2>&1"  # Выполняем команду и скрываем вывод
+    # echo "Нажмите любую клавишу для продолжения..."
+    # read -n 1 -s  # Ожидаем нажатия клавиши
+    # sleep 1  # Пауза на 1 секунду
+}
+
+clear
+
 # Обновление компонентов системы
 echo "Updating system components..."
-sudo apt update && sudo apt upgrade -y
+run_command "sudo apt update && sudo apt upgrade -y"
 
 # Установка git
 echo "Installing Git..."
-sudo apt-get install git -y
+run_command "sudo apt-get install git -y"
 
 # Установка Docker
 echo "Installing Docker..."
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
+run_command "curl -fsSL https://get.docker.com -o get-docker.sh"
+run_command "sudo sh get-docker.sh"
 
 # Установка Docker Compose
 echo "Installing Docker Compose..."
-sudo apt-get install docker-compose -y
+run_command "sudo apt-get install docker-compose -y"
 
 # Настройка SSH
 echo "Configuring SSH..."
-sudo bash -c 'echo "
-Port 55555
-PasswordAuthentication no
-PubkeyAuthentication yes
-ChallengeResponseAuthentication no
-PermitRootLogin yes
-UsePAM yes
-" > /etc/ssh/sshd_config.d/tellus.conf'
+run_command "sudo bash -c 'echo \"Port 55555\nPasswordAuthentication no\nPubkeyAuthentication yes\nChallengeResponseAuthentication no\nPermitRootLogin yes\nUsePAM yes\n\" > /etc/ssh/sshd_config.d/tellus.conf'"
 
 # Установка fail2ban
-echo "Установка fail2ban..."
-apt-get update
-apt-get install -y fail2ban
+echo "Installing and configuring fail2ban..."
+run_command "apt-get install -y fail2ban"
 
 # Путь к конфигурационному файлу jail.local
 JAIL_LOCAL="/etc/fail2ban/jail.local"
@@ -58,47 +60,34 @@ bantime = 86400
 findtime = 3600
 EOL
 
-# Перезапуск fail2ban
-echo "Перезапуск fail2ban..."
-systemctl restart fail2ban
-
-# Проверка статуса fail2ban
-echo "Статус fail2ban для sshd:"
-fail2ban-client status sshd
-
-
 # Установка и настройка UFW
 echo "Installing and configuring UFW..."
-sudo apt -y install ufw
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw allow 55555
-sudo ufw allow 443
-sudo ufw allow 2053
-sudo ufw enable
+run_command "sudo apt -y install ufw"
+run_command "sudo ufw default deny incoming"
+run_command "sudo ufw default allow outgoing"
+run_command "sudo ufw allow 55555"
+run_command "sudo ufw allow 443"
+run_command "sudo ufw allow 2053"
 
 # Установка панели 3X-UI
 echo "Installing 3X-UI panel..."
-cd ~
-git clone https://github.com/MHSanaei/3x-ui.git
-cd 3x-ui
-git checkout v2.4.0
-
-# Запуск 3X-UI с помощью Docker Compose
-echo "Starting 3X-UI with Docker Compose..."
-docker compose up -d
-
-# Перезапуск службы SSH для применения изменений
-echo "Restarting SSH service..."
-sudo systemctl restart ssh
+run_command "cd ~"
+run_command "git clone https://github.com/MHSanaei/3x-ui.git"
+run_command "cd 3x-ui"
+run_command "git checkout v2.4.0"
+run_command "docker compose up -d"
 
 # Копирование скрипта для обновления 3X-UI, а также настройки UDP/TCP маскировки для VLESS
-cd ~
-wget -O update_3x-ui.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/update_3x-ui.sh
-wget -O 3x_ui_port_routing.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/3x_ui_port_routing.sh
-chmod +x update_3x-ui.sh
-chmod +x 3x_ui_port_routing.sh
+echo "Copying scripts - 3X-UI update & VLESS UDP/TCP masking..."
+run_command "cd ~"
+run_command "wget -O update_3x-ui.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/update_3x-ui.sh"
+run_command "wget -O 3x_ui_port_routing.sh https://raw.githubusercontent.com/tellusaflame/scripts/main/3x_ui_port_routing.sh"
+run_command "chmod +x update_3x-ui.sh"
+run_command "chmod +x 3x_ui_port_routing.sh"
+
+run_command "sudo ufw enable"
 
 echo "Setup completed successfully! Rebooting..."
+run_command "sleep 5"
 
-sudo reboot now
+run_command "sudo reboot now"
