@@ -16,7 +16,7 @@ clear
 
 # Обновление компонентов системы
 echo "Updating system components..."
-run_command "sudo apt update && sudo apt upgrade -y"
+run_command "sudo apt update -qq && sudo apt upgrade -qq -y"
 
 # Установка git
 echo "Installing Git..."
